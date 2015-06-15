@@ -184,7 +184,7 @@ public class DiskCache {
         do {
             try data.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
             success = true
-        } catch var error1 as NSError {
+        } catch let error1 as NSError {
             error = error1
             success = false
         }
@@ -206,7 +206,7 @@ public class DiskCache {
         do {
             try fileManager.setAttributes([NSFileModificationDate : now], ofItemAtPath: path)
             success = true
-        } catch var error1 as NSError {
+        } catch let error1 as NSError {
             error = error1
             success = false
         }
@@ -225,11 +225,11 @@ public class DiskCache {
             do {
                 try fileManager.removeItemAtPath(path)
                 self.size -= fileSize
-            } catch var error1 as NSError {
+            } catch let error1 as NSError {
                 error = error1
                 Log.error("Failed to remove file", error)
             }
-        } catch var error1 as NSError {
+        } catch let error1 as NSError {
             error = error1
             if isNoSuchFileError(error) {
                 Log.debug("File not found", error)

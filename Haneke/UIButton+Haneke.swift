@@ -80,7 +80,7 @@ public extension UIButton {
         if cache.formats[format.name] == nil {
             cache.addFormat(format)
         }
-        var animated = false
+
         let fetch = cache.fetch(fetcher: fetcher, formatName: format.name, failure: {[weak self] error in
             if let strongSelf = self {
                 if strongSelf.hnk_shouldCancelImageForKey(fetcher.key) { return }
@@ -96,7 +96,7 @@ public extension UIButton {
                     strongSelf.hnk_setImage(image, state: state, animated: false, success: succeed)
                 }
         }
-        animated = true
+
         return fetch.hasSucceeded
     }
     
@@ -154,7 +154,7 @@ public extension UIButton {
      
         if didSetImage { return }
         
-        if let placeHolder = placeholder {
+        if let placeholder = placeholder {
             self.setBackgroundImage(placeholder, forState: state)
         }
     }
@@ -190,7 +190,7 @@ public extension UIButton {
         if cache.formats[format.name] == nil {
             cache.addFormat(format)
         }
-        var animated = false
+
         let fetch = cache.fetch(fetcher: fetcher, formatName: format.name, failure: {[weak self] error in
             if let strongSelf = self {
                 if strongSelf.hnk_shouldCancelBackgroundImageForKey(fetcher.key) { return }
@@ -206,7 +206,7 @@ public extension UIButton {
                     strongSelf.hnk_setBackgroundImage(image, state: state, animated: false, success: succeed)
                 }
         }
-        animated = true
+
         return fetch.hasSucceeded
     }
     
