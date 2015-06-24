@@ -66,7 +66,9 @@ extension UIImage {
             // UIImage and drawInRect takes into account image orientation, unlike CGContextDrawImage.
             self.drawInRect(imageRect)
             UIGraphicsPopContext()
-            let decompressedImageRef = CGBitmapContextCreateImage(context)
+            guard let decompressedImageRef = CGBitmapContextCreateImage(context) else {
+                return self
+            }
             
             let scale = UIScreen.mainScreen().scale
             let image = UIImage(CGImage: decompressedImageRef, scale:scale, orientation:UIImageOrientation.Up)
